@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { busca } from '../api/api'
+import { api } from '../api/api'
 
 
 const ListaPost = ( { url } ) => { 
@@ -8,15 +8,18 @@ const ListaPost = ( { url } ) => {
 const [posts, setPosts] = useState([])
 
 useEffect(() => {
-    console.log("entrou no effect");
-  busca(url, setPosts)
-}, [])
+  const load = async () => {
+    const res = await api.get(url)
+    setPosts(res.data)
+  }
+  load()
+}, [url])
 
   return(
     <section className="posts container">
       { 
        posts.map((post)=> (
-         <Link className={`cartao-post cartao-post--${post.categoria}`}>
+         <Link className={`cartao-post cartao-post--${post.categoria}`} to={`posts/${post.id}`}>
            <article key={post.id}>
               <h3 className="cartao-post__titulo">
                 {post.title}
