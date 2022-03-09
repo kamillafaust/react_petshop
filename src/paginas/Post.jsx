@@ -10,13 +10,16 @@ const Post = () => {
 
     useEffect(() => {
         const load = async () => {
-            const resp = await api.get(`/posts/${id}`)
-            setPost(resp.data);
+            try {
+                const resp = await api.get(`/posts/${id}`)
+                setPost(resp.data)
+            }
+            catch(error) {
+                history.push('/404')
+            }
         }
-        load().catch(() => {
-            history.push('/404')
-        });
-    }, [id]);
+        load();
+    }, []);
 
     return (
         <main className=" container flex flex--centro">

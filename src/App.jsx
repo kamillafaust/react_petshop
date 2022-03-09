@@ -3,6 +3,7 @@ import './assets/css/base/base.css';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Home from './paginas/Home';
 import Sobre from './paginas/Sobre';
+import Categoria from './paginas/Categoria';
 import Post from './paginas/Post';
 import Pagina404 from './paginas/Pagina404';
 import Cabecalho from './componentes/cabecalho';
@@ -15,6 +16,7 @@ function App() {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/sobre' component={Sobre} />
+        <Route path='/categoria/:id' component={Categoria}/>
         <Route path='/posts/:id' component={Post} />
         <Route component={Pagina404} />
       </Switch>
