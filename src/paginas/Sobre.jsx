@@ -5,22 +5,11 @@ import { api } from '../api/api'
 import '../assets/css/componentes/cartao.css'
 
 const Sobre = () => {
-const [about, setAbout] = useState("")
-
-  useEffect(() => {
-    const load = async () => {
-      const res = await api.get("/about")
-      setAbout(res.data)
-    }
-    load()
-  }, [])
 
   return (
     <main>
       <div className="container">
         <h2 className="titulo-pagina">Sobre Doguito</h2>
-        {console.log(about)}
-        <h4>{about.title}</h4>
       </div>
       <section className="container flex flex--centro">
         <article className="cartao">

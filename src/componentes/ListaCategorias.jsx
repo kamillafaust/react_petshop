@@ -1,19 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { api } from '../api/api';
 import '../assets/css/blog.css';
+import useFetchListaCategorias from '../hooks/useFetchListaCategorias';
 
 const ListaCategorias = () => {
 
-    const [categorias, setCategorias] = useState([]);
-
-    useEffect(() => {
-        const load = async() => {
-            const resp = await api.get('/categorias');
-            setCategorias(resp.data);
-        }
-        load();
-    }, []);
+    const {categorias} = useFetchListaCategorias();
 
     return (
         <ul className="lista-categorias container flex">

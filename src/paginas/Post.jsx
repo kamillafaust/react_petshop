@@ -1,26 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
-import { api } from '../api/api';
+import React from 'react';
 import '../assets/css/post.css';
+import useFetchPost from '../hooks/useFetchPost';
 
 const Post = () => {
-    let history = useHistory();
-    const { id } = useParams();
-    const [post, setPost] = useState({});
 
-    useEffect(() => {
-        const load = async () => {
-            try {
-                const resp = await api.get(`/posts/${id}`)
-                setPost(resp.data)
-            }
-            catch(error) {
-                history.push('/404')
-            }
-        }
-        load();
-    }, []);
-
+    const { post } = useFetchPost()
+    
     return (
         <main className=" container flex flex--centro">
             <article className="cartao post">
